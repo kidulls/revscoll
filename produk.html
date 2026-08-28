@@ -1,531 +1,553 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth" data-theme="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Produk - Revscoll Store</title>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <title>Katalog Produk Sepatu Eksklusif - RevsColl</title>
     <style>
         :root {
-            --primary-font: 'Plus Jakarta Sans', sans-serif;
-            --elite-font: 'Playfair Display', serif;
-            --bg-color: #0f1016;
-            --text-color: #ffffff;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --header-bg: rgba(15, 16, 22, 0.9);
-            --border-color: rgba(212, 175, 55, 0.2);
-            --accent: #d4af37;
+            --bg-black: #050505;
+            --gold-primary: #ffd700;
+            --gold-light: #fff8dc;
+            --gold-dark: #b8860b;
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
         }
-        [data-theme="light"] {
-            --bg-color: #f8f9fa;
-            --text-color: #121212;
-            --card-bg: #ffffff;
-            --header-bg: rgba(248, 249, 250, 0.9);
-            --border-color: rgba(0, 0, 0, 0.1);
-        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: var(--primary-font);
         }
+
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100vh;
+            background-color: var(--bg-black);
+            color: #f5f5f5;
+            font-family: 'Playfair Display', 'Cinzel', serif, sans-serif;
             overflow-x: hidden;
-            font-size: 13px; 
-            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
         }
-        .elite-font {
-            font-family: var(--elite-font);
+
+        /* Sparkle / Glitter background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(white 1px, transparent 0), radial-gradient(rgba(255, 215, 0, 0.5) 1px, transparent 0);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
         }
-        @keyframes goldShimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        @keyframes wobbleEffect {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-2px); }
-        }
-        .gold-glow-text {
-            background: linear-gradient(90deg, #cfac55 0%, #fff1b0 25%, #d4af37 50%, #fff1b0 75%, #cfac55 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: goldShimmer 1s linear infinite, wobbleEffect 3s ease-in-out infinite;
-        }
-        .gold-glow-btn {
-            background: linear-gradient(90deg, #b8860b, #ffd700, #daa520, #ffd700, #b8860b) !important;
-            background-size: 200% auto !important;
-            color: #121212 !important;
-            animation: goldShimmer 1s linear infinite !important;
-            font-weight: 700 !important;
-            border: none !important;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .rotating-logo {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--accent);
-            animation: spin 8s linear infinite;
-        }
-        .main-header {
-            background: var(--header-bg);
+
+        /* Header & Navbar */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: rgba(5, 5, 5, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .header-container {
+            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 15px;
-            max-width: 1100px;
-            margin: 0 auto;
+            padding: 15px 30px;
+            z-index: 1000;
         }
-        .brand-wrapper {
+
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+
+        .logo-container img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold-primary);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
-        .theme-toggle-btn, .hamburger-btn {
-            background: #d4af37;
-            border: 1px solid #ffd700;
-            color: #121212;
-            width: 34px;
-            height: 34px;
-            border-radius: 6px;
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
             cursor: pointer;
-            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: var(--gold-primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Navigation Drawer */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            border-left: 1px solid rgba(218, 165, 32, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 1050;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .nav-menu a:hover {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 80px;
+            background: radial-gradient(circle at center, rgba(30, 25, 5, 0.4) 0%, rgba(5, 5, 5, 1) 80%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #d4af37;
+            max-width: 700px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-family: sans-serif;
+        }
+
+        /* Products Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 2px solid rgba(218, 165, 32, 0.3);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .title-wrapper {
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            border-color: var(--gold-primary);
+        }
+
+        .product-img-box {
+            width: 100%;
+            height: 220px;
+            background: #111;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-        }
-        .theme-toggle-btn:hover, .hamburger-btn:hover {
-            background: #ffd700;
-            transform: scale(1.05);
-        }
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            background: var(--bg-color);
-            padding: 12px 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .mobile-menu.active {
-            display: flex;
-        }
-        .mobile-menu a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .container {
-            max-width: 1100px;
-            margin: 25px auto;
-            padding: 0 15px;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-        .section-header h2 {
-            font-size: 1.6rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-        .section-header p {
-            font-size: 0.85rem;
-        }
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .product-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border-bottom: 1px solid rgba(218, 165, 32, 0.2);
         }
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.15);
-            border-color: #d4af37;
-        }
-        .product-slider {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            background: #0f1016;
-            overflow: hidden;
-        }
-        .slider-track {
-            display: flex;
-            width: 400%;
-            height: 100%;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .slide {
-            width: 25%;
-            height: 100%;
-            flex-shrink: 0;
-            position: relative;
-        }
-        .slide img {
+
+        .product-img-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        .slider-dots {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 5px;
-            z-index: 10;
-            background: rgba(0,0,0,0.4);
-            padding: 3px 8px;
-            border-radius: 15px;
-            backdrop-filter: blur(4px);
+
+        .product-card:hover .product-img-box img {
+            transform: scale(1.08);
         }
-        .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-        }
-        .dot.active {
-            background: #d4af37;
-            transform: scale(1.2);
-        }
+
         .product-content {
-            padding: 16px;
-            flex-grow: 1;
+            padding: 25px;
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
             justify-content: space-between;
         }
+
         .product-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-        .product-desc {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-bottom: 14px;
-            line-height: 1.4;
-        }
-        .product-footer-info {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
+            font-size: 1.4rem;
             margin-bottom: 12px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 10px;
-        }
-        .product-badge {
-            background: rgba(212, 175, 55, 0.15);
-            color: #d4af37;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        .size-guide-container {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 40px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        .size-guide-container h3 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .size-guide-container p {
-            font-size: 0.85rem;
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: #cccccc;
+            line-height: 1.6;
+            font-family: sans-serif;
+            margin-bottom: 20px;
         }
-        .table-responsive {
-            overflow-x: auto;
-            margin-top: 15px;
-        }
-        .size-table {
+
+        /* Rainbow Button Script / Styling */
+        .rainbow-btn {
+            display: inline-block;
             width: 100%;
-            border-collapse: collapse;
+            padding: 12px 20px;
             text-align: center;
-            font-size: 0.85rem;
-        }
-        .size-table th, .size-table td {
-            padding: 10px 12px;
-            border: 1px solid var(--border-color);
-        }
-        .size-table th {
-            background: var(--card-bg);
-            color: #d4af37;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 6px;
+            color: #fff;
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 400% 400%;
+            animation: rainbowAnimation 6s ease infinite;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
             text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
         }
+
+        .rainbow-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+        }
+
+        @keyframes rainbowAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
-            background: var(--card-bg);
-            border-top: 1px solid var(--border-color);
-            font-size: 0.75rem;
-            margin-top: 50px;
+            padding: 40px;
+            border-top: 1px solid rgba(218, 165, 32, 0.2);
+            margin-top: 60px;
+            color: #999;
+            font-family: sans-serif;
+            font-size: 0.9rem;
+            background: rgba(5,5,5,0.98);
         }
+
+        footer span {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
-            .catalog-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
-    <header class="main-header" id="home">
-        <div class="container header-container">
-            <div class="brand-wrapper">
-                <img src="assets/images/logo/logo-hitam.png" alt="Logo Revscoll Store" class="rotating-logo">
-                <div class="brand-text">
-                    <h1 class="brand-title elite-font gold-glow-text" style="font-size: 15px; margin: 0;">REVSCOLL STORE</h1>
-                    <p class="brand-subtitle gold-glow-text" style="font-size: 9px; margin: 0;">Official Premium Catalog</p>
-                </div>
-            </div>
-            <div class="header-actions">
-                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Ganti Tema" title="Ganti Mode Terang/Gelap">🌓</button>
-                <button class="hamburger-btn" onclick="toggleMenu()" aria-label="Menu Toggle" title="Menu Navigasi">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="assets/images/logo/logo.jpg" alt="Logo RevsColl">
+            <div class="logo-text">RevsColl</div>
         </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="https://revscoll.my.id" onclick="toggleMenu()"><i class="fa-solid fa-house"></i> Beranda Utama</a>
-            <a href="https://revscoll.my.id/tentang-kami" onclick="toggleMenu()"><i class="fa-solid fa-store"></i> Tentang Kami</a>
-            <a href="https://revscoll.my.id/produk" onclick="toggleMenu()"><i class="fa-solid fa-box-open"></i> Produk Utama</a>
-            <a href="#kontak" onclick="toggleMenu()"><i class="fa-solid fa-address-book"></i> Kontak Kami</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </header>
 
-    <div class="container">
-        <div class="section-header">
-            <span class="gold-glow-text" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;">Koleksi Eksklusif</span>
-            <h2 class="elite-font gold-glow-text">Katalog Produk Sepatu</h2>
-            <p class="gold-glow-text">Pilih lini produk favorit Anda dengan kualitas terbaik.</p>
-        </div>
-
-        <div class="catalog-grid" id="catalogGrid"></div>
-
-        <div class="size-guide-container">
-            <h3 class="elite-font gold-glow-text">Panduan Ukuran (Size Chart Resmi)</h3>
-            <p class="gold-glow-text">Pastikan Anda memilih ukuran yang pas dan nyaman sebelum melakukan pemesanan.</p>
-            <div class="table-responsive">
-                <table class="size-table">
-                    <thead>
-                        <tr>
-                            <th class="gold-glow-text">EU / Size</th>
-                            <th class="gold-glow-text">US Men</th>
-                            <th class="gold-glow-text">UK</th>
-                            <th class="gold-glow-text">Panjang Kaki (cm)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="gold-glow-text">
-                        <tr><td>39</td><td>6.5</td><td>6.0</td><td>24.5 cm</td></tr>
-                        <tr><td>40</td><td>7.0</td><td>6.5</td><td>25.0 cm</td></tr>
-                        <tr><td>41</td><td>8.0</td><td>7.5</td><td>26.0 cm</td></tr>
-                        <tr><td>42</td><td>8.5</td><td>8.0</td><td>26.5 cm</td></tr>
-                        <tr><td>43</td><td>9.5</td><td>9.0</td><td>27.5 cm</td></tr>
-                        <tr><td>44</td><td>10.0</td><td>9.5</td><td>28.0 cm</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <!-- Nav Menu Drawer -->
+    <div class="nav-menu" id="navMenu">
+        <a href="https://revscoll.my.id">Beranda</a>
+        <a href="https://wa.me/628987686501">Hubungi Kami</a>
+        <a href="https://revscoll.my.id/tentang-kami">Tentang Kami</a>
     </div>
 
-    <footer id="kontak">
-        <p class="gold-glow-text">&copy; 2026 <span>Revscoll Store</span>. All Rights Reserved. Designed with Professional & Interactive UI.</p>
-    </footer>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Koleksi Sepatu Eksklusif</h1>
+        <p>Temukan kemewahan dan performa tertinggi dalam setiap langkah Anda. Desain terbaik dengan sentuhan kilau emas berkualitas tinggi.</p>
+    </section>
 
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
+    <!-- Product Catalog -->
+    <div class="container">
+        <div class="title-wrapper">
+            <h2 class="section-title">Katalog Produk</h2>
+        </div>
+        
+        <div class="product-grid">
 
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            html.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
-        }
-
-        const products = [
-            {
-                name: "Puma Suede XL",
-                desc: "Desain chunky klasik dengan lidah sepatu empuk dan tebal, menghadirkan kenyamanan maksimal serta gaya streetwear retro autentik.",
-                badge: "Best Seller",
-                images: [
-                    "assets/images/xl/xlhitamputih.png",
-                    "assets/images/xl/xlfullblack.png",
-                    "assets/images/xl/xlmerah.png",
-                    "assets/images/xl/xlbiru.png"
-                ],
-                productUrl: "https://revscoll.my.id/xl"
-            },
-            {
-                name: "Adidas Campus",
-                desc: "Sepatu ikonis berbahan suede lembut dengan sentuhan estetika era 80-an yang elegan, kasual, dan sangat digemari anak muda.",
-                badge: "Trending",
-                images: [
-                    "assets/images/campuss/campusshitamputih.png",
-                    "assets/images/campuss/campussfullblack.png",
-                    "assets/images/campuss/campussmaroon.png",
-                    "assets/images/campuss/campusshijau.png"
-                ],
-                productUrl: "https://revscoll.my.id/campuss"
-            },
-            {
-                name: "Ando All Variants Size",
-                desc: "Pilihan alas kaki lokal berkualitas tinggi yang kuat, tahan lama, dan sangat nyaman digunakan untuk aktivitas sekolah harian.",
-                badge: "Local Pride",
-                images: [
-                    "assets/images/ando/andohitamputih.png",
-                    "assets/images/ando/andopink.png",
-                    "assets/images/ando/andofullblack.png"
-                ],
-                productUrl: "https://revscoll.my.id/ando"
-            },
-            {
-                name: "Ortuseight Hyperblast 2.0",
-                desc: "Sepatu lari profesional dengan teknologi sol ringan, empuk, serta sirkulasi udara optimal untuk performa olahraga terbaik Anda.",
-                badge: "Sports Series",
-                images: [
-                    "assets/images/ortus/ortus1.png",
-                    "assets/images/ortus/ortus2.png",
-                    "assets/images/ortus/ortus3.png"
-                ],
-                productUrl: "https://revscoll.my.id/ortus"
-            },
-            {
-                name: "Adidas Samba",
-                desc: "Legendaris sepatu indoor football yang bertransformasi menjadi ikon fashion streetwear global dengan siluet ramping dan elegan.",
-                badge: "Iconic",
-                images: [
-                    "assets/images/samba/samba1.png",
-                    "assets/images/samba/samba2.png",
-                    "assets/images/samba/samba3.png",
-                    "assets/images/samba/samba5.png"
-                ],
-                productUrl: "https://revscoll.my.id/samba"
-            },
-            {
-                name: "Puma Park Life Style",
-                desc: "Kombinasi sempurna antara kenyamanan kasual sehari-hari dan ketahanan material premium untuk menemani setiap langkah aktif Anda.",
-                badge: "New Arrival",
-                images: [
-                    "assets/images/park/park1.png",
-                    "assets/images/park/park2.png",
-                    "assets/images/park/park3.png"
-                ],
-                productUrl: "https://revscoll.my.id/park"
-            }
-        ];
-
-        const grid = document.getElementById("catalogGrid");
-
-        products.forEach((prod, index) => {
-            const card = document.createElement("div");
-            card.className = "product-card";
-
-            let slidesHtml = '';
-            let dotsHtml = '';
-            prod.images.forEach((img, i) => {
-                slidesHtml += `<div class="slide"><img src="${img}" alt="${prod.name} foto ${i+1}"></div>`;
-                dotsHtml += `<span class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`;
-            });
-
-            card.innerHTML = `
-                <div class="product-slider" id="slider-${index}">
-                    <div class="slider-track" id="track-${index}">
-                        ${slidesHtml}
-                    </div>
-                    <div class="slider-dots" id="dots-${index}">
-                        ${dotsHtml}
-                    </div>
+            <!-- 1. Vans Knu -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/vans-knu.jpg" alt="Vans Knu Skool" onerror="this.src='assets/images/logo/logo.jpg'">
                 </div>
                 <div class="product-content">
                     <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                            <h3 class="product-title elite-font gold-glow-text">${prod.name}</h3>
-                            <span class="product-badge">${prod.badge}</span>
-                        </div>
-                        <p class="product-desc gold-glow-text">${prod.desc}</p>
+                        <h3 class="product-title">Vans Knu Skool</h3>
+                        <p class="product-desc">Sneakers chunky bergaya 90-an dengan lidah tebal (puffy tongue), sol waffle khas Vans, dan sidestripe 3D timbul yang ikonik untuk tampilan streetwear bold dan kasual.</p>
                     </div>
-                    <div>
-                        <div class="product-footer-info">
-                            <span style="font-size: 0.75rem;" class="gold-glow-text"><i class="fa-solid fa-check-circle" style="color: #34d399;"></i> Stok Tersedia</span>
-                        </div>
-                        <a href="${prod.productUrl}" target="_blank" class="btn-gold-custom gold-glow-btn" style="display:block; text-align:center; padding:10px; border-radius:6px; text-decoration:none; font-size:12px;">
-                            Beli Sekarang
-                        </a>
-                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Vans%20Knu" class="rainbow-btn">Pesan Sekarang</a>
                 </div>
-            `;
+            </div>
 
-            grid.appendChild(card);
+            <!-- 2. Puma XL -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/puma-xl.jpg" alt="Puma XL" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">Puma XL</h3>
+                        <p class="product-desc">Sepatu gaya hidup modern dengan proporsi oversized yang trendi. Menawarkan kenyamanan maksimal, bantalan empuk, dan estetika urban yang sangat mencolok.</p>
+                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Puma%20XL" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
 
-            let currentSlide = 0;
-            const track = document.getElementById(`track-${index}`);
-            const dotsContainer = document.getElementById(`dots-${index}`);
-            const dots = dotsContainer.querySelectorAll('.dot');
-            const totalSlides = prod.images.length;
+            <!-- 3. Puma Speedcat -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/puma-speedcat.jpg" alt="Puma Speedcat" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">Puma Speedcat</h3>
+                        <p class="product-desc">Siluet legendaris bernuansa motorsport balap F1. Dibuat dengan bahan suede premium berprofil ramping, memberikan fleksibilitas aerodinamis dan gaya retro-chic.</p>
+                    </div>
+                    <a href="https://sukusikidulls.roms.id/speedcat/keren" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
 
-            setInterval(() => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                track.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
-                dots.forEach((d, dIdx) => {
-                    d.classList.toggle('active', dIdx === currentSlide);
-                });
-            }, 3000);
+            <!-- 4. Adidas Adizero -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/adidas-adizero.jpg" alt="Adidas Adizero" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">Adidas Adizero</h3>
+                        <p class="product-desc">Sepatu lari berperforma tinggi dengan teknologi bantalan Lightstrike dan carbon-infused rods terdepan. Dirancang khusus untuk memecahkan rekor kecepatan lari Anda.</p>
+                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Adidas%20Adizero" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
 
-            dots.forEach((dot, dIdx) => {
-                dot.addEventListener('click', () => {
-                    currentSlide = dIdx;
-                    track.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
-                    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
-                });
+            <!-- 5. Adidas Campus -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/adidas-campus.jpg" alt="Adidas Campus" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">Adidas Campus</h3>
+                        <p class="product-desc">Sneakers klasik berbahan suede mewah dengan sol karet kokoh. Menghadirkan sentuhan gaya vintage skate era 80-an yang tak lekang oleh waktu dan mudah dipadukan.</p>
+                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Adidas%20Campus" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <!-- 6. Adidas Samba -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/adidas-samba.jpg" alt="Adidas Samba" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">Adidas Samba</h3>
+                        <p class="product-desc">Ikon legendaris dari lapangan sepak bola indoor era klasik kini mendominasi fashion streetwear global. Upper kulit lembut dengan T-toe suede dan 3-Stripes khas.</p>
+                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Adidas%20Samba" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <!-- 7. Hoka Running -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/hoka-running.jpg" alt="Hoka Running" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">Hoka Running</h3>
+                        <p class="product-desc">Sepatu lari jarak jauh dengan sol tebal bermaksimal bantalan empuk (maximalist cushion). Menjamin perlindungan sendi superior dan kenyamanan luar biasa di setiap lintasan.</p>
+                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Hoka%20Running" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <!-- 8. Rebox (Reebok) -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/rebox.jpg" alt="Rebox" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">Rebox (Reebok Classic)</h3>
+                        <p class="product-desc">Desain sporty retro kasual dengan upper kulit sintetis berkualitas tinggi dan sol tahan lama. Nyaman dipakai sepanjang hari untuk berbagai aktivitas harian Anda.</p>
+                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Rebox" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <!-- 9. On Cloudtec -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/on-cloudtec.jpg" alt="On Cloudtec" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">On Cloudtec</h3>
+                        <p class="product-desc">Sepatu inovatif asal Swiss dengan teknologi sol berongga (CloudTec elements). Memberikan sensasi mendarat di atas awan dan tolakan eksplosif yang responsif.</p>
+                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20On%20Cloudtec" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <!-- 10. Lining -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/lining.jpg" alt="Lining" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">Li-Ning Sport</h3>
+                        <p class="product-desc">Sepatu olahraga berkualitas profesional dengan stabilitas tinggi dan sirkulasi udara optimal. Dirancang untuk performa atletis maksimal di lapangan badminton maupun lari.</p>
+                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Lining" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <!-- 11. Ando School Series -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/ando-school.jpg" alt="Ando School Series" onerror="this.src='assets/images/logo/logo.jpg'">
+                </div>
+                <div class="product-content">
+                    <div>
+                        <h3 class="product-title">Ando School Series</h3>
+                        <p class="product-desc">Sepatu sekolah pilihan terbaik yang awet, kuat, dan nyaman digunakan sepanjang hari. Menggunakan material berkualitas tinggi tahan lama serta desain rapi sesuai standar.</p>
+                    </div>
+                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Ando%20School%20Series" class="rainbow-btn">Pesan Sekarang</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <span>RevsColl</span>. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+    </footer>
+
+    <!-- Script Hamburger & Tombol Pelangi interaktif -->
+    <script>
+        // Toggle Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Script Pelangi Tambahan untuk efek dinamis pada tombol saat diklik/hover
+        const rainbowButtons = document.querySelectorAll('.rainbow-btn');
+        rainbowButtons.forEach(btn => {
+            btn.addEventListener('mouseover', () => {
+                btn.style.filter = 'brightness(1.2)';
+            });
+            btn.addEventListener('mouseout', () => {
+                btn.style.filter = 'brightness(1)';
             });
         });
     </script>
