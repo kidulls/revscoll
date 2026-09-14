@@ -1,555 +1,316 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Produk Sepatu Eksklusif - RevsColl</title>
-    <style>
-        :root {
-            --bg-black: #050505;
-            --gold-primary: #ffd700;
-            --gold-light: #fff8dc;
-            --gold-dark: #b8860b;
-            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-        }
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Katalog Produk & Layanan - Revscoll Store</title>
+  <meta name="description" content="Katalog produk sepatu Revscoll Store lengkap dengan informasi harga eceran dan grosir.">
+  <meta name="keywords" content="Revscoll Store, Katalog Sepatu, Harga Eceran, Harga Grosir, Puma, Adidas, Vans, Ventela, Ando, Ortus Eight, Hoka, Nike, On Cloud, Nine Teen">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-        body {
-            background-color: var(--bg-black);
-            color: #f5f5f5;
-            font-family: 'Playfair Display', 'Cinzel', serif, sans-serif;
-            overflow-x: hidden;
-            position: relative;
-        }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-        /* Sparkle / Glitter background effect */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(white 1px, transparent 0), radial-gradient(rgba(255, 215, 0, 0.5) 1px, transparent 0);
-            background-size: 50px 50px;
-            background-position: 0 0, 25px 25px;
-            opacity: 0.15;
-            z-index: -1;
-            pointer-events: none;
-        }
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-        /* Header & Navbar */
-        header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: rgba(5, 5, 5, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            z-index: 1000;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-container img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--gold-primary);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .logo-text {
-            font-size: 1.4rem;
-            font-weight: bold;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            z-index: 1100;
-        }
-
-        .hamburger span {
-            width: 30px;
-            height: 3px;
-            background: var(--gold-primary);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
-        }
-
-        /* Navigation Drawer */
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background: rgba(10, 10, 10, 0.98);
-            border-left: 1px solid rgba(218, 165, 32, 0.4);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-            z-index: 1050;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.8);
-        }
-
-        .nav-menu.active {
-            right: 0;
-        }
-
-        .nav-menu a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
-        }
-
-        .nav-menu a:hover {
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-            transform: scale(1.05);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            margin-top: 80px;
-            background: radial-gradient(circle at center, rgba(30, 25, 5, 0.4) 0%, rgba(5, 5, 5, 1) 80%);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-            letter-spacing: 3px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #d4af37;
-            max-width: 700px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-family: sans-serif;
-        }
-
-        /* Products Grid */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-bottom: 2px solid rgba(218, 165, 32, 0.3);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .title-wrapper {
-            text-align: center;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .product-card {
-            background: rgba(15, 15, 15, 0.9);
-            border: 1px solid rgba(218, 165, 32, 0.3);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-            border-color: var(--gold-primary);
-        }
-
-        .product-img-box {
-            width: 100%;
-            height: 220px;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(218, 165, 32, 0.2);
-        }
-
-        .product-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .product-img-box img {
-            transform: scale(1.08);
-        }
-
-        .product-content {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-
-        .product-title {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .product-desc {
-            font-size: 0.95rem;
-            color: #cccccc;
-            line-height: 1.6;
-            font-family: sans-serif;
-            margin-bottom: 20px;
-        }
-
-        /* Rainbow Button Script / Styling */
-        .rainbow-btn {
-            display: inline-block;
-            width: 100%;
-            padding: 12px 20px;
-            text-align: center;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 6px;
-            color: #fff;
-            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-            background-size: 400% 400%;
-            animation: rainbowAnimation 6s ease infinite;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: sans-serif;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .rainbow-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
-        }
-
-        @keyframes rainbowAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid rgba(218, 165, 32, 0.2);
-            margin-top: 60px;
-            color: #999;
-            font-family: sans-serif;
-            font-size: 0.9rem;
-            background: rgba(5,5,5,0.98);
-        }
-
-        footer span {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1rem; }
-        }
-    </style>
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
 </head>
-<body>
 
-    <!-- Header & Navigation -->
-    <header>
-        <div class="logo-container">
-            <img src="assets/images/logo/logo.jpg" alt="Logo RevsColl">
-            <div class="logo-text">RevsColl</div>
-        </div>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </header>
+<body class="service-details-page">
 
-    <!-- Nav Menu Drawer -->
-    <div class="nav-menu" id="navMenu">
-        <a href="https://revscoll.my.id">Beranda</a>
-        <a href="https://wa.me/628987686501">Hubungi Kami</a>
-        <a href="https://revscoll.my.id/tentang-kami">Tentang Kami</a>
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Revscoll Store</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="tentang-kami.html">Tentang Kami</a></li>
+          <li><a href="index.html#services" class="active">Kategori Produk</a></li>
+          <li><a href="index.html#portfolio">Koleksi Sepatu</a></li>
+          <li><a href="syarat-ketentuan.html">Syarat & Ketentuan</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#portfolio">Lihat Katalog</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+      <div class="container">
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Service & Katalog Details</li>
+          </ol>
+        </nav>
+        <h1>Katalog Produk & Layanan Detail</h1>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Service Details Section -->
+    <section id="service-details" class="service-details section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <!-- Sidebar Daftar Merek & Galeri Produk -->
+<div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+  <div class="services-list">
+    <a href="#puma" class="active">Puma</a>
+    <a href="#adidas">Adidas</a>
+    <a href="#vans">Vans</a>
+    <a href="#ventela">Ventela</a>
+    <a href="#ando">Ando</a>
+    <a href="#ortus-eight">Ortus Eight</a>
+    <a href="#hoka">Hoka</a>
+    <a href="#nike">Nike</a>
+    <a href="#on-cloud">On Cloud</a>
+    <a href="#nine-teen">Nine Teen</a>
+  </div>
+
+  <!-- Tambahan: Kolom Foto Produk Bisa Digeser (Slider Horizontal) -->
+  <div class="sidebar-product-slider mt-4">
+    <h6 class="mb-3 font-weight-bold">Produk Pilihan</h6>
+    <div class="product-scroll-container">
+      <div class="product-card">
+        <img src="assets/img/portfolio/Speedcat1.jpg",<img src="assets/img/portfolio/Speedcat1.jpg" alt="Produk 1">
+        <span class="product-name">Puma RS-X</span>
+      </div>
+      <div class="product-card">
+        <img src="path/to/foto2.jpg" alt="Produk 2">
+        <span class="product-name">Adidas Forum</span>
+      </div>
+      <div class="product-card">
+        <img src="path/to/foto3.jpg" alt="Produk 3">
+        <span class="product-name">Vans Old Skool</span>
+      </div>
+      <div class="product-card">
+        <img src="path/to/foto4.jpg" alt="Produk 4">
+        <span class="product-name">Nike Air Force</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+            <h4>PT Revs Coll Shoes Mandiri</h4>
+            <p>Pusat grosir dan eceran sepatu terpercaya dengan pilihan brand lokal hingga internasional berkualitas tinggi untuk kebutuhan harian maupun bisnis Anda.</p>
+          </div>
+
+          <!-- Konten Detail Produk / Katalog -->
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            <img src="assets/img/services/services-4.webp" alt="Katalog Sepatu Revscoll" class="img-fluid services-img">
+            
+            <h3 class="mt-4">Katalog Resmi & Perbandingan Harga (Eceran vs Grosir)</h3>
+            <p>
+              Di bawah naungan <strong>PT Revs Coll Shoes Mandiri</strong>, Revscoll Store menyediakan berbagai macam brand sepatu terpopuler. Silakan cek detail harga eceran untuk pembelian satuan maupun harga grosir khusus untuk mitra bisnis dan reseller melalui tautan di bawah ini.
+            </p>
+
+            <hr class="my-4">
+
+            <!-- 1. Puma -->
+            <div id="puma" class="mb-5">
+              <h4>1. Puma</h4>
+              <p>Sepatu sporty & casual dengan teknologi bantalan empuk untuk kenyamanan maksimal saat berolahraga maupun beraktivitas sehari-hari.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20Puma" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (Puma)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20Puma" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (Puma)</a>
+              </div>
+            </div>
+
+            <!-- 2. Adidas -->
+            <div id="adidas" class="mb-5">
+              <h4>2. Adidas</h4>
+              <p>Desain ikonik dengan material premium yang memadukan unsur fashion modern dan performa atlet tinggi.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20Adidas" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (Adidas)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20Adidas" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (Adidas)</a>
+              </div>
+            </div>
+
+            <!-- 3. Vans -->
+            <div id="vans" class="mb-5">
+              <h4>3. Vans</h4>
+              <p>Pilihan utama anak muda dan pecinta streetwear, tahan lama, fleksibel, serta pas untuk gaya casual harian.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20Vans" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (Vans)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20Vans" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (Vans)</a>
+              </div>
+            </div>
+
+            <!-- 4. Ventela -->
+            <div id="ventela" class="mb-5">
+              <h4>4. Ventela</h4>
+              <p>Sepatu lokal kebanggaan Indonesia dengan kualitas canvasing premium, sol empuk, dan jahitan yang sangat kokoh.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20Ventela" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (Ventela)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20Ventela" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (Ventela)</a>
+              </div>
+            </div>
+
+            <!-- 5. Ando -->
+            <div id="ando" class="mb-5">
+              <h4>5. Ando</h4>
+              <p>Alas kaki kasual dan sekolah yang terkenal awet, ringan di kaki, serta ramah di kantong untuk seluruh anggota keluarga.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20Ando" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (Ando)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20Ando" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (Ando)</a>
+              </div>
+            </div>
+
+            <!-- 6. Ortus Eight -->
+            <div id="ortus-eight" class="mb-5">
+              <h4>6. Ortus Eight</h4>
+              <p>Brand lokal andalan untuk perlengkapan olahraga profesional seperti sepak bola, futsal, dan running dengan teknologi mutakhir.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20Ortus%20Eight" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (Ortus Eight)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20Ortus%20Eight" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (Ortus Eight)</a>
+              </div>
+            </div>
+
+            <!-- 7. Hoka -->
+            <div id="hoka" class="mb-5">
+              <h4>7. Hoka</h4>
+              <p>Sepatu lari dengan ciri khas sol tebal (maximal cushioning) yang memberikan perlindungan ekstra dan kenyamanan luar biasa.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20Hoka" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (Hoka)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20Hoka" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (Hoka)</a>
+              </div>
+            </div>
+
+            <!-- 8. Nike -->
+            <div id="nike" class="mb-5">
+              <h4>8. Nike</h4>
+              <p>Simbol inovasi global dalam dunia sportswear, menghadirkan lini sneakers dan sepatu lari dengan desain terdepan.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20Nike" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (Nike)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20Nike" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (Nike)</a>
+              </div>
+            </div>
+
+            <!-- 9. On Cloud -->
+            <div id="on-cloud" class="mb-5">
+              <h4>9. On Cloud</h4>
+              <p>Sepatu lari inovatif asal Swiss dengan teknologi CloudTec® untuk sensasi berlari di atas awan, ringan dan stylish.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20On%20Cloud" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (On Cloud)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20On%20Cloud" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (On Cloud)</a>
+              </div>
+            </div>
+
+            <!-- 10. Nine Teen -->
+            <div id="nine-teen" class="mb-5">
+              <h4>10. Nine Teen</h4>
+              <p>Koleksi sepatu kasual dan sporty trendi yang dirancang khusus untuk menemani gaya hidup aktif masa kini.</p>
+              <div class="d-flex gap-3">
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Eceran%20Nine%20Teen" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-tag"></i> Cek Harga Eceran (Nine Teen)</a>
+                <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Revscoll%20Store,%20saya%20mau%20cek%20Harga%20Grosir%20Nine%20Teen" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-boxes"></i> Cek Harga Grosir (Nine Teen)</a>
+              </div>
+            </div>
+
+            <div class="alert alert-light border mt-4">
+              <h5><i class="bi bi-info-circle"></i> Informasi Pemesanan</h5>
+              <p class="mb-0">Tautan di atas akan mengarahkan langsung ke layanan WhatsApp Admin kami untuk membedakan jalur pemesanan Eceran maupun Grosir/Partai besar.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Service Details Section -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="d-flex align-items-center">
+            <span class="sitename">PT REVS COLL SHOES MANDIRI</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p><strong>Revscoll Store</strong></p>
+            <p>Pusat Grosir &amp; Eceran Sepatu Terpercaya</p>
+            <p class="mt-3"><strong>Email:</strong> <span>info@revscoll.my.id</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Menu Utama</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#hero">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#about">About Us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#services">Kategori</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#portfolio">Katalog</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Kategori Produk</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#portfolio">Sporty Shoes</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#portfolio">Casual Shoes</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#portfolio">High Premium 1:1</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <h4>Tentang Kami</h4>
+          <p>Menyediakan model sepatu pilihan mulai dari kategori sporty, casual, hingga high premium 1:1 yang dikurasi langsung untuk menjamin kepuasan pelanggan.</p>
+        </div>
+      </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Koleksi Sepatu Eksklusif</h1>
-        <p>Temukan kemewahan dan performa tertinggi dalam setiap langkah Anda. Desain terbaik dengan sentuhan kilau emas berkualitas tinggi.</p>
-    </section>
-
-    <!-- Product Catalog -->
-    <div class="container">
-        <div class="title-wrapper">
-            <h2 class="section-title">Katalog Produk</h2>
-        </div>
-        
-        <div class="product-grid">
-
-            <!-- 1. Vans Knu -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/knu/banner-knu.png" alt="Vans Knu Skool" onerror="this.src='assets/images/knu/banner-knu.png'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Vans Knu Skool</h3>
-                        <p class="product-desc">Sneakers chunky bergaya 90-an dengan lidah tebal (puffy tongue), sol waffle khas Vans, dan sidestripe 3D timbul yang ikonik untuk tampilan streetwear bold dan kasual.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Vans%20Knu" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 2. Puma XL -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/puma-xl.jpg" alt="Puma XL" onerror="this.src='assets/images/logo/logo.jpg'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Puma XL</h3>
-                        <p class="product-desc">Sepatu gaya hidup modern dengan proporsi oversized yang trendi. Menawarkan kenyamanan maksimal, bantalan empuk, dan estetika urban yang sangat mencolok.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Puma%20XL" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 3. Puma Speedcat -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/speedcat/master-puma.png, assets/images/speedcat/puma-black-white.png" alt="Puma Speedcat">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Puma Speedcat</h3>
-                        <p class="product-desc">Siluet legendaris bernuansa motorsport balap F1. Dibuat dengan bahan suede premium berprofil ramping, memberikan fleksibilitas aerodinamis dan gaya retro-chic.</p>
-                    </div>
-                    <a href="https://sukusikidulls.roms.id/speedcat/keren" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 4. Adidas Adizero -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/adidas-adizero.jpg" alt="Adidas Adizero" onerror="this.src='assets/images/logo/logo.jpg'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Adidas Adizero</h3>
-                        <p class="product-desc">Sepatu lari berperforma tinggi dengan teknologi bantalan Lightstrike dan carbon-infused rods terdepan. Dirancang khusus untuk memecahkan rekor kecepatan lari Anda.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Adidas%20Adizero" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 5. Adidas Campus -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/adidas-campus.jpg" alt="Adidas Campus" onerror="this.src='assets/images/logo/logo.jpg'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Adidas Campus</h3>
-                        <p class="product-desc">Sneakers klasik berbahan suede mewah dengan sol karet kokoh. Menghadirkan sentuhan gaya vintage skate era 80-an yang tak lekang oleh waktu dan mudah dipadukan.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Adidas%20Campus" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 6. Adidas Samba -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/adidas-samba.jpg" alt="Adidas Samba" onerror="this.src='assets/images/logo/logo.jpg'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Adidas Samba</h3>
-                        <p class="product-desc">Ikon legendaris dari lapangan sepak bola indoor era klasik kini mendominasi fashion streetwear global. Upper kulit lembut dengan T-toe suede dan 3-Stripes khas.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Adidas%20Samba" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 7. Hoka Running -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/hoka-running.jpg" alt="Hoka Running" onerror="this.src='assets/images/logo/logo.jpg'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Hoka Running</h3>
-                        <p class="product-desc">Sepatu lari jarak jauh dengan sol tebal bermaksimal bantalan empuk (maximalist cushion). Menjamin perlindungan sendi superior dan kenyamanan luar biasa di setiap lintasan.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Hoka%20Running" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 8. Rebox (Reebok) -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/rebox.jpg" alt="Rebox" onerror="this.src='assets/images/logo/logo.jpg'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Rebox (Reebok Classic)</h3>
-                        <p class="product-desc">Desain sporty retro kasual dengan upper kulit sintetis berkualitas tinggi dan sol tahan lama. Nyaman dipakai sepanjang hari untuk berbagai aktivitas harian Anda.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Rebox" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 9. On Cloudtec -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/on-cloudtec.jpg" alt="On Cloudtec" onerror="this.src='assets/images/logo/logo.jpg'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">On Cloudtec</h3>
-                        <p class="product-desc">Sepatu inovatif asal Swiss dengan teknologi sol berongga (CloudTec elements). Memberikan sensasi mendarat di atas awan dan tolakan eksplosif yang responsif.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20On%20Cloudtec" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 10. Lining -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/lining.jpg" alt="Lining" onerror="this.src='assets/images/logo/logo.jpg'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Li-Ning Sport</h3>
-                        <p class="product-desc">Sepatu olahraga berkualitas profesional dengan stabilitas tinggi dan sirkulasi udara optimal. Dirancang untuk performa atletis maksimal di lapangan badminton maupun lari.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Lining" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <!-- 11. Ando School Series -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="assets/images/ando-school.jpg" alt="Ando School Series" onerror="this.src='assets/images/logo/logo.jpg'">
-                </div>
-                <div class="product-content">
-                    <div>
-                        <h3 class="product-title">Ando School Series</h3>
-                        <p class="product-desc">Sepatu sekolah pilihan terbaik yang awet, kuat, dan nyaman digunakan sepanjang hari. Menggunakan material berkualitas tinggi tahan lama serta desain rapi sesuai standar.</p>
-                    </div>
-                    <a href="https://wa.me/628987686501?text=Halo,%20saya%20tertarik%20dengan%20Ando%20School%20Series" class="rainbow-btn">Pesan Sekarang</a>
-                </div>
-            </div>
-
-        </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">PT REVS COLL SHOES MANDIRI</strong> <span>All Rights Reserved</span></p>
     </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 <span>RevsColl</span>. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
-    </footer>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Script Hamburger & Tombol Pelangi interaktif -->
-    <script>
-        // Toggle Hamburger Menu
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
+  <!-- Preloader -->
+  <div id="preloader"></div>
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                navMenu.classList.remove('active');
-            }
-        });
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
 
-        // Script Pelangi Tambahan untuk efek dinamis pada tombol saat diklik/hover
-        const rainbowButtons = document.querySelectorAll('.rainbow-btn');
-        rainbowButtons.forEach(btn => {
-            btn.addEventListener('mouseover', () => {
-                btn.style.filter = 'brightness(1.2)';
-            });
-            btn.addEventListener('mouseout', () => {
-                btn.style.filter = 'brightness(1)';
-            });
-        });
-    </script>
 </body>
+
 </html>
